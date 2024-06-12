@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form select {
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+form input[type="submit"] {
+    padding: 12px 24px; /* increase button padding */
+    font-size: 18px; /* increase button font size */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #4CAF50;
+}
+
+/* 共同样式 */
+.comment {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+
+.comment h2 {
+    margin-top: 0;
+}
+
+.comment p {
+    margin-bottom: 5px;
+}
+
+.comment p.user {
+    font-weight: bold;
+}
+
+.comment p.user span {
+    font-weight: normal;
+}
+
+.comment hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

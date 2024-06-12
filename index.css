@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px auto;
+    width: 90%;
+}
+
+.button {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.button a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button a:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 1920px) {
+    h1 {
+        font-size: 36px;
+    }
+    
+    .button a {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    h1 {
+        font-size: 28px;
+    }
+    
+    .button a {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,45 @@
+/* 设置整个页面的背景颜色为白色 */
+body {
+	height: 100vh;
+	background-image: linear-gradient( to bottom right,  #ffffff, #ffffff);
+}
+
+/* 设计一个圆角的白色div，居中显示 */
+div {
+
+	background-image: linear-gradient( to bottom right,  #ffffff, #ffffff);
+	text-align: center;
+	margin: 200px auto;
+}
+
+/* 设置标题样式 */
+h1 {
+	color: rgb(0, 0, 0);
+	font-weight: 1000;
+	text-align: center;
+	height: 50px;
+}
+
+/* 设置按钮样式 */
+.button {
+	width: 30rem;
+	padding:5rem;
+	color:#fff;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* 设计链接 */
+a {
+	position: relative;
+	width: 400px;
+	height: 50px;
+	line-height: 50px;
+	border-radius: 5px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 35px;
+	color: #000000;
+	z-index: 1;
+
+}
