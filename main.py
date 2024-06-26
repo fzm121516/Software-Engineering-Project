@@ -64,7 +64,7 @@ async def main():
 
         c = Cemotion()  # Create Cemotion instance for sentiment analysis
 
-        for thread in threads[0:50]:
+        for thread in threads[0:100]:
             postsentiment = c.predict(thread.text)
             cursor.execute("""
                 INSERT INTO hotpost (tid, user_id, user_name, nick_name_new, user_level,
@@ -90,7 +90,7 @@ async def main():
                         post.disagree, post.create_time, post.user.ip, sentiment))
                     db.commit()
 
-                    print(post.user.ip)
+                    # print(post.user.ip)
 
             # Update hotpost sentiment with the average sentiment of its comments
             cursor.execute("""

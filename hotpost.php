@@ -34,7 +34,8 @@
     <form action="index.php" method="get">
         <input type="submit" value="返回到主页" class="return-btn">
     </form>
-
+    
+    <div style="text-align: center;">
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $count = intval($_POST["count"]);
@@ -54,7 +55,7 @@
         }
 
         // 查询数据库
-        $sql = "SELECT tid, user_name, nick_name_new, user_level, create_time, last_time, text, title, view_num, reply_num, agree, disagree, sentiment FROM hotpost ORDER BY ";
+        $sql = "SELECT * FROM hotpost ORDER BY ";
 
         switch ($sort) {
             case "reply":
@@ -93,8 +94,12 @@
                 echo "</form>";
                
 
-                echo "<p>tid：{$post['tid']} 用户：{$post['user_name']} (昵称：{$post['nick_name_new']}，等级：{$post['user_level']})</p>";
-                echo "<p>查看数：{$post['view_num']} 回复数：{$post['reply_num']} 点赞数：{$post['agree']}  踩数：{$post['disagree']}</p>";
+                echo "<p>tid：{$post['tid']} 用户：{$post['user_name']} (昵称：{$post['nick_name_new']}，等级：{$post['user_level']} 查看数：{$post['view_num']} 回复数：{$post['reply_num']} 点赞数：{$post['agree']}  踩数：{$post['disagree']}</p>";
+
+                $color2 = "hsl(" . round($post['sentiment_mean'] * 120) . ", 100%, 50%)";
+                echo "<p style='background-color: {$color2}; display: inline-block;'>主题以及所有回复的情感分析置信度均值：{$post['sentiment_mean']}</p>";
+                
+                
                 #echo "<p>创建时间：{$post['create_time']}，最后回复时间：{$post['last_time']}</p>";
                 echo "<hr>";
                 $index++;
@@ -105,8 +110,7 @@
         $stmt->close();
         $conn->close();
     }
-
-    
     ?>
+    </div>
 </body>
 </html>
