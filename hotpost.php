@@ -17,6 +17,20 @@
         </select>
         <input type="submit" value="查询">
     </form>
+
+    <div class="gradient-text">情感分析结果：置信度分数</div>
+    <div class="gradient-label1">
+        <div class="label-left">0 负面</div>
+        <div class="label-right">正面 1</div>
+    </div>
+    <div class="gradient-bar"></div>
+    <div class="gradient-label">
+        <span>0°</span>
+        <span>120°</span>
+    </div>
+    <div class="gradient-text">色调(Hue)</div>
+
+
     <form action="index.php" method="get">
         <input type="submit" value="返回到主页" class="return-btn">
     </form>

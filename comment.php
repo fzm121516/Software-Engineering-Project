@@ -16,6 +16,20 @@
         <input type="hidden" name="tid" value="<?php echo isset($_POST['tid']) ? $_POST['tid'] : ''; ?>">
         <input type="submit" value="提交">
     </form>
+
+    <div class="gradient-text">情感分析结果：置信度分数</div>
+    <div class="gradient-label1">
+        <div class="label-left">0 负面</div>
+        <div class="label-right">正面 1</div>
+    </div>
+    <div class="gradient-bar"></div>
+    <div class="gradient-label">
+        <span>0°</span>
+        <span>120°</span>
+    </div>
+    <div class="gradient-text">色调(Hue)</div>
+
+
     <form action="hotpost.php" method="get">
         <input type="submit" value="返回到上一级" class="return-btn">
     </form>

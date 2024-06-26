@@ -4,6 +4,7 @@ from cemotion import Cemotion
 import aiotieba
 from aiotieba import ThreadSortType, PostSortType
 
+
 async def main():
     db = pymysql.connect(
         host='localhost',  # 主机名（或IP地址）
@@ -53,6 +54,7 @@ async def main():
             agree INT,
             disagree INT,
             create_time BIGINT,
+            ip TEXT,
             sentiment FLOAT
         )
     """)
@@ -62,12 +64,14 @@ async def main():
 
         c = Cemotion()  # Create Cemotion instance for sentiment analysis
 
-        for thread in threads[0:5]:
+        for thread in threads[0:50]:
             postsentiment = c.predict(thread.text)
             cursor.execute("""
-                INSERT INTO hotpost (tid, user_id, user_name, nick_name_new, user_level, create_time, last_time, text, title, view_num, reply_num, agree, disagree,sentiment)
+                INSERT INTO hotpost (tid, user_id, user_name, nick_name_new, user_level,
+                 create_time, last_time, text, title, view_num, reply_num, agree, disagree,sentiment)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (thread.tid, thread.user.user_id, thread.user.user_name, thread.user.nick_name_new, thread.user.level, thread.create_time, thread.last_time, thread.text, thread.title, thread.view_num, thread.reply_num, thread.agree, thread.disagree,postsentiment))
+            """, (thread.tid, thread.user.user_id, thread.user.user_name, thread.user.nick_name_new, thread.user.level, thread.create_time, thread.last_time,
+                  thread.text, thread.title, thread.view_num, thread.reply_num, thread.agree, thread.disagree, postsentiment))
             db.commit()
 
             posts = await client.get_posts(thread.tid, pn=1, rn=100,
@@ -79,10 +83,14 @@ async def main():
                 if post.text.strip():  # Check if text is not empty
                     sentiment = c.predict(post.text)  # Predict sentiment using Cemotion
                     cursor.execute("""
-                        INSERT INTO comment (tid, pid, text, user_id, user_name, nick_name_new, floor, reply_num, agree, disagree, create_time, sentiment)
-                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                    """, (post.tid, post.pid, post.text, post.user.user_id, post.user.user_name, post.user.nick_name_new, post.floor, post.reply_num, post.agree, post.disagree, post.create_time, sentiment))
+                        INSERT INTO comment (tid, pid, text, user_id, user_name, nick_name_new, floor, reply_num, agree, disagree, create_time, ip ,sentiment)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)
+                    """, (
+                        post.tid, post.pid, post.text, post.user.user_id, post.user.user_name, post.user.nick_name_new, post.floor, post.reply_num, post.agree,
+                        post.disagree, post.create_time, post.user.ip, sentiment))
                     db.commit()
+
+                    print(post.user.ip)
 
             # Update hotpost sentiment with the average sentiment of its comments
             cursor.execute("""
@@ -92,6 +100,7 @@ async def main():
 
     cursor.close()
     db.close()
+
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(main())

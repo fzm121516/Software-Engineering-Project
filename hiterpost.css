@@ -43,3 +43,69 @@ a {
 	z-index: 1;
 
 }
+
+
+
+
+.gradient-text {
+    text-align: center; /* 文本居中对齐 */
+    margin-top: 10px; /* 上边距 */
+    color: rgb(0, 0, 0); /* 文本颜色 */
+    font-size: 16px; /* 字体大小 */
+}
+
+.gradient-bar {
+    height: 100px; /* 设置渐变条的高度 */
+    max-width: 500px; /* 设置最大宽度为页面宽度的80% */
+    margin: 0 auto; /* 居中显示 */
+    background: linear-gradient(to right, hsl(0, 100%, 50%), hsl(120, 100%, 50%));
+}
+
+.gradient-label {
+    position: relative; /* 相对定位，用于绝对定位的子元素 */
+    display: flex; /* 使用 Flex 布局 */
+    justify-content: space-between; /* 左右对齐 */
+    width: 500px; /* 设置与渐变条相同的宽度 */
+    margin: 0 auto; /* 居中显示 */
+    color: rgb(0, 0, 0); /* 文本颜色 */
+    font-size: 30px; /* 字体大小 */
+}
+
+
+.gradient-label span {
+    position: absolute; /* 绝对定位 */
+}
+
+.gradient-label span:first-child {
+    left: 0; /* 左对齐 */
+}
+
+.gradient-label span:last-child {
+    right: 0; /* 右对齐 */
+}
+
+
+.gradient-label1 {
+    position: relative; /* 相对定位，用于绝对定位的子元素 */
+    width: 500px; /* 设置与渐变条相同的宽度 */
+    margin: 20px auto 10px; /* 居中显示，同时增加上方和下方间距 */
+    display: flex; /* 使用 Flex 布局 */
+    justify-content: space-between; /* 左右对齐 */
+    color: rgb(0, 0, 0); /* 文本颜色 */
+    font-size: 30px; /* 字体大小 */
+}
+
+.gradient-label1 .label-left,
+.gradient-label1 .label-right {
+    position: absolute; /* 绝对定位 */
+    top: -40px; /* 距离 .gradient-bar 顶部的距离 */
+}
+
+.gradient-label1 .label-left {
+    left: 0; /* 左对齐 */
+}
+
+.gradient-label1 .label-right {
+    right: 0; /* 右对齐 */
+}
+
