@@ -60,11 +60,30 @@ async def main():
     """)
 
     async with aiotieba.Client() as client:
-        threads = await client.get_threads("哈尔滨工业大学", pn=1, rn=100, sort=ThreadSortType.REPLY)
-
+        merged_threads = []
+        threads = await client.get_threads("哈尔滨工业大学", pn=1, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=2, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=3, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=4, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=5, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=6, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=7, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=8, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=9, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
+        threads = await client.get_threads("哈尔滨工业大学", pn=10, rn=100, sort=ThreadSortType.CREATE)
+        merged_threads.extend(threads)
         c = Cemotion()  # Create Cemotion instance for sentiment analysis
 
-        for thread in threads[0:100]:
+        for thread in merged_threads:
             postsentiment = c.predict(thread.text)
             cursor.execute("""
                 INSERT INTO hotpost (tid, user_id, user_name, nick_name_new, user_level,
@@ -74,7 +93,7 @@ async def main():
                   thread.text, thread.title, thread.view_num, thread.reply_num, thread.agree, thread.disagree, postsentiment))
             db.commit()
 
-            posts = await client.get_posts(thread.tid, pn=1, rn=100,
+            posts = await client.get_posts(thread.tid, pn=1, rn=1000,
                                            sort=PostSortType.ASC,
                                            only_thread_author=False,
                                            with_comments=False, comment_sort_by_agree=True, comment_rn=50)

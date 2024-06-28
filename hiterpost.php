@@ -101,6 +101,8 @@ if ($result->num_rows > 0) {
         // 其他信息，背景色为白色
         echo "<div class='comment-info'>";
         echo "<p>tid：{$row['tid']} pid：{$row['pid']} 用户：{$row['user_name']} (昵称：{$row['nick_name_new']} 楼层：{$row['floor']}) 回复数：{$row['reply_num']} 点赞数：{$row['agree']}  踩数：{$row['disagree']}</p>";
+        $create_time_readable = date('Y-m-d H:i:s', $row['create_time']);
+        echo "<p>创建时间：" . $create_time_readable . " </p>";
         echo "</div>";
 
         // 关闭评论容器

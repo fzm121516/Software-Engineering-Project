@@ -10,7 +10,7 @@
     </form>
 
 
-    <div class="gradient-text">情感分析结果：置信度分数</div>
+<!--     <div class="gradient-text">情感分析结果：置信度分数</div>
     <div class="gradient-label1">
         <div class="label-left">0 负面</div>
         <div class="label-right">正面 1</div>
@@ -20,7 +20,7 @@
         <span>0°</span>
         <span>120°</span>
     </div>
-    <div class="gradient-text">色相(Hue)</div>
+    <div class="gradient-text">色相(Hue)</div> -->
     
 
     <form action="index.php" method="get">
@@ -68,14 +68,15 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $sentiment = $row["sentiment"];
         // 根据情感分析结果动态计算颜色
-        $color = "hsl(" . round($sentiment * 120) . ", 100%, 50%)"; // 使用HSL颜色模式，情感分析结果映射到色相值
+        $color = "hsl(" . round($sentiment * 120) . ", 100%, 50%)"; // 使用HSL颜色模式，情感分析结果映射到色相值 */
 
         // 开始评论容器
         echo "<div class='comment'>";
         
         // 评论文本容器，只覆盖文本部分的背景色
         echo "<div class='comment-text'>";
-        echo "<div style='background-color: $color; display: inline-block;'>";
+/*         echo "<div style='background-color: $color; display: inline-block;'>"; */
+        echo "<div  display: inline-block;'>";
         echo "<h3>{$row['text']}</h3>";
         echo "</div>";
         echo "</div>"; // 关闭评论文本容器

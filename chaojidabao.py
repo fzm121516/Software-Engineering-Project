@@ -12,12 +12,30 @@ db = pymysql.connect(
 
 cursor = db.cursor()
 
+cursor.execute("DROP TABLE IF EXISTS chaojidabao")
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS chaojidabao (
+        tid BIGINT,
+        pid BIGINT,
+        text TEXT,
+        user_id BIGINT,
+        user_name VARCHAR(255),
+        nick_name_new VARCHAR(255),
+        floor INT,
+        reply_num INT,
+        agree INT,
+        disagree INT,
+        create_time BIGINT,
+        ip TEXT,
+        sentiment FLOAT
+    )
+""")
 # 查询comment表中text重复次数大于三的评论
 cursor.execute("""
     SELECT text, COUNT(*) AS cnt
     FROM comment
     GROUP BY text
-    HAVING cnt > 3
+    HAVING cnt > 2
 """)
 
 

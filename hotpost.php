@@ -30,6 +30,7 @@
     </div>
     <div class="gradient-text">色调(Hue)</div>
 
+    
 
     <form action="index.php" method="get">
         <input type="submit" value="返回到主页" class="return-btn">
@@ -92,15 +93,19 @@
                 echo "<input type='hidden' name='tid' style='background-color: $color;' value='{$post['tid']}'>";
                 echo "<button type='submit' style='background-color: $color;' name='submit'>{$post['text']}</button>";
                 echo "</form>";
-               
 
-                echo "<p>tid：{$post['tid']} 用户：{$post['user_name']} (昵称：{$post['nick_name_new']}，等级：{$post['user_level']} 查看数：{$post['view_num']} 回复数：{$post['reply_num']} 点赞数：{$post['agree']}  踩数：{$post['disagree']}</p>";
+
+
+                echo "<p>tid：{$post['tid']} 用户：{$post['user_name']} (昵称：{$post['nick_name_new']}，等级：{$post['user_level']} 查看数：{$post['view_num']} 回复数：{$post['reply_num']} 点赞数：{$post['agree']}  踩数：{$post['disagree']}   </p>";
 
                 $color2 = "hsl(" . round($post['sentiment_mean'] * 120) . ", 100%, 50%)";
                 echo "<p style='background-color: {$color2}; display: inline-block;'>主题以及所有回复的情感分析置信度均值：{$post['sentiment_mean']}</p>";
+
+                $create_time_readable = date('Y-m-d H:i:s', $post['create_time']);
+                $last_time_readable = date('Y-m-d H:i:s', $post['last_time']);
+                echo "<p>创建时间：" . $create_time_readable . "   最后回复时间：" . $last_time_readable . "</p>";
+
                 
-                
-                #echo "<p>创建时间：{$post['create_time']}，最后回复时间：{$post['last_time']}</p>";
                 echo "<hr>";
                 $index++;
             }
